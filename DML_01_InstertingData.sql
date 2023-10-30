@@ -22,8 +22,10 @@ INSERT INTO student VALUES(2, 'Kate', 'Chemistry');
 
 INSERT INTO student(student_id, name) VALUES(3, 'Claire');
 
-INSERT INTO student VALUES(4, 'Mark');
+INSERT INTO student VALUES(4, 'Mark', 'Sociology');
 
-INSERT INTO student VALUES(5, 'Maria', NULL);
+INSERT INTO student(name, major) VALUES('Maria', NULL);
+
+INSERT INTO student VALUES(8, 'Isabela', 'Electronics');
 --pa mostrar/query
 SELECT * FROM student;
