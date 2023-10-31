@@ -18,4 +18,15 @@ CREATE TABLE employee (
 DESCRIBE employee;
 
 -- branch
+CREATE TABLE branch (
+    branch_id INT AUTO_INCREMENT,
+    branch_name VARCHAR(40),
+    mgr_id INT,
+    mrg_start_date DATE,
+    PRIMARY KEY(branch_id),
+    FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL
+);
 
+--DROP TABLE branch;
+
+DESCRIBE branch;
