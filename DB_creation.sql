@@ -47,3 +47,14 @@ REFERENCES employee(emp_id)
 ON DELETE SET NULL; --el foreing es el id del empleado
 
 DESCRIBE employee;
+
+-- client
+CREATE TABLE client (
+    client_id INT AUTO_INCREMENT,
+    client_name VARCHAR(40),
+    branch_id INT,
+    PRIMARY KEY(client_id),
+    FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL
+);
+
+DESCRIBE client;
