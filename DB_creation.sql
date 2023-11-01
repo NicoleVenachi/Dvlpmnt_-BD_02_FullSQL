@@ -30,3 +30,20 @@ CREATE TABLE branch (
 --DROP TABLE branch;
 
 DESCRIBE branch;
+
+-- Ahora sí podemos editar eployee table con sus foreing keys, pues
+-- ya fueron credas tablas branch y emloyee
+
+ALTER TABLE employee
+ADD FOREIGN KEY(branch_id)
+REFERENCES branch(branch_id)
+ON DELETE SET NULL;
+
+DESCRIBE branch;
+
+ALTER TABLE employee
+ADD FOREIGN KEY(super_id)
+REFERENCES employee(emp_id)
+ON DELETE SET NULL; --el foreing es el id del empleado
+
+DESCRIBE employee;
