@@ -1,6 +1,8 @@
 
 USE classicmodels;
 
+SHOW TABLES;
+
 -- offices
 DROP TABLE offices;
 
@@ -17,6 +19,27 @@ CREATE TABLE offices (
     PRIMARY KEY (officeCode)
 );
 
-SHOW TABLES;
+
 
 DESCRIBE offices;
+
+--  employees
+ 
+DROP TABLE IF EXISTS  employees; -- to refresh the table
+
+CREATE TABLE employees (
+    employeeNumber INT(11) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    firstName VARCHAR(50) NOT NULL,
+    extension VARCHAR(10) NOT NULL,
+    email VARCHAR(100) NOT NULL, 
+    officeCode VARCHAR(10) NOT NULL, -- relation with office
+    reportsTo INT(11) DEFAULT NULL, -- self relation
+    jobTitle VARCHAR(50) NOT NULL,
+    PRIMARY KEY (employeeNumber),
+    FOREIGN KEY (reportsTo) REFERENCES employees(employeeNumber),
+    FOREIGN KEY (officeCode) REFERENCES offices(officeCode)
+);
+
+
+DESCRIBE employees;
