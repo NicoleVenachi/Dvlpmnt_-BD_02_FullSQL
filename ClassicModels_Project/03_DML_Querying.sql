@@ -15,3 +15,11 @@ DELETE
 FROM offices 
 WHERE officeCode='aaa'; -- WHERE on -D-elete CRUD op
 
+-- change the person reporting to from San francisco empoloyees working as Sales Rep
+
+SELECT * 
+FROM employees;
+
+UPDATE employees
+SET reportsTo="1002"
+WHERE jobTitle='Sales Rep' AND officeCode='1';
