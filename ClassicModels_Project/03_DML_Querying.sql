@@ -55,3 +55,59 @@ WHERE employeeNumber IN (
     FROM customers
     WHERE country IN ("SPAIN" OR "FRANCE" OR "ITALY" )
 ); --using NESTED QUERY to get the employees ID to look for
+
+-- Delete the entries for Sales Representatives working in London.
+
+DESCRIBE offices;
+
+SELECT  *
+FROM offices;
+
+SELECT officeCode, country
+FROM offices
+WHERE city = 'London'; --get office code for london offices
+
+SELECT *
+FROM employees
+WHERE officeCode = (
+    SELECT officeCode
+    FROM offices
+    WHERE city = 'London'
+); -- show wxisting sales rep on london
+
+DELETE FROM employees
+WHERE officeCode = (
+    SELECT officeCode
+    FROM offices
+    WHERE city = 'London'
+); -- no dejo por table constraints, no sabe que hacer con estos employees en los customers
+ 
+SELECT *
+FROM employees
+WHERE officeCode = (
+    SELECT officeCode
+    FROM offices
+    WHERE city = 'London'
+); -- check deleted registers
+
+
+-- Show a list of employees who are not sales representatives
+
+DESCRIBE employees;
+
+SELECT DISTINCT jobTitle
+FROM employees; -- obtener categorias de posibles trabajos
+
+
+SELECT * 
+FROM employees
+WHERE jobTitle = 'Sales Rep';
+
+
+-- Show a list of customers with "Toys" in their name
+
+DESCRIBE customers;
+
+SELECT *
+FROM customers
+WHERE customerName LIKE '%Toys%'; -- pattern is toys at any position
