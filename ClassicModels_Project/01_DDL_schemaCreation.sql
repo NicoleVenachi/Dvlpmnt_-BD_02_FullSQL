@@ -70,3 +70,36 @@ CREATE TABLE IF NOT EXISTS customers ( -- doesn't deletes all data like dorp tab
 
 
 DESCRIBE customers;
+
+-- product lines (como categorias)
+
+DROP TABLE IF EXISTS `productlines`;
+
+CREATE TABLE `productlines` (
+  `productLine` varchar(50) NOT NULL,
+  `textDescription` varchar(4000) DEFAULT NULL,
+  `htmlDescription` mediumtext,
+  `image` mediumblob,
+  PRIMARY KEY (`productLine`)
+);
+
+DESCRIBE productlines;
+
+-- products
+
+DROP TABLE IF EXISTS `products`;
+
+CREATE TABLE `products` (
+  `productCode` varchar(15) NOT NULL,
+  `productName` varchar(70) NOT NULL,
+  `productLine` varchar(50) NOT NULL,
+  `productScale` varchar(10) NOT NULL,
+  `productVendor` varchar(50) NOT NULL,
+  `productDescription` text NOT NULL,
+  `quantityInStock` smallint(6) NOT NULL,
+  `buyPrice` decimal(10,2) NOT NULL, 
+  `MSRP` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`productCode`),
+  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`productLine`) REFERENCES `productlines` (`productLine`)
+); --manufacturing price
+--retaikl price o precio a la venta
