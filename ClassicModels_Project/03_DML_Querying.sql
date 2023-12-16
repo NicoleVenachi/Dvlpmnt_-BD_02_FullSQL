@@ -111,3 +111,21 @@ DESCRIBE customers;
 SELECT *
 FROM customers
 WHERE customerName LIKE '%Toys%'; -- pattern is toys at any position
+
+-- **** ORDER BY and LIMIT clausule ***
+SELECT customerName, country
+FROM customers
+ORDER BY country;
+
+SELECT customerName, country
+FROM customers
+LIMIT 10;
+
+--- list the top 5 customers with a credit limit greater than a 1000 USD, order by it's country  
+SELECT customerName, country, creditLimit
+FROM customers
+WHERE creditLimit>100000
+ORDER BY country
+LIMIT 5;
+
+-- **** Excercises ***
