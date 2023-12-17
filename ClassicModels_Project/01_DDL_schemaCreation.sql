@@ -103,3 +103,20 @@ CREATE TABLE `products` (
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`productLine`) REFERENCES `productlines` (`productLine`)
 ); --manufacturing price
 --retaikl price o precio a la venta
+
+
+-- orders
+
+CREATE TABLE IF NOT EXISTS orders (
+    orderNumber INT(11) NOT NULL,
+    orderDate DATETIME NOT NULL,
+    requiredDate DATETIME NOT NULL,
+    shippedDate DATETIME DEFAULT NULL,
+    status varchar(15) NOT NULL CHECK (status IN ('Shipped','Resolved','Disputed', 'Cancelled', 'On Hold', 'In Process')),
+    comments TEXT DEFAULT NULL,
+    customerNumber INT(11) NOT NULL,
+    PRIMARY KEY (orderNumber),
+    FOREIGN KEY (customerNumber) REFERENCES customers (customerNumber)
+); 
+
+DESCRIBE orders;
