@@ -120,3 +120,19 @@ CREATE TABLE IF NOT EXISTS orders (
 ); 
 
 DESCRIBE orders;
+
+-- order details
+
+CREATE TABLE IF NOT EXISTS orderdetails (
+    orderNumber INT(11) NOT NULL,
+    productCode varchar(15) NOT NULL,
+    quantityOrdered INT(11) NOT NULL,
+    priceEach DOUBLE NOT NULL,
+    orderLineNumer SMALLINT(6) NOT NULL,
+    PRIMARY KEY (orderNumber, productCode),
+    FOREIGN KEY (orderNumber) REFERENCES orders (orderNumber),
+    FOREIGN KEY (productCode) REFERENCES products(productCode)
+
+); -- PK compuesta de dos FK
+
+DESCRIBE orderdetails;
