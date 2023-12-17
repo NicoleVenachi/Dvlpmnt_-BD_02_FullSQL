@@ -129,3 +129,34 @@ ORDER BY country
 LIMIT 5;
 
 -- **** Excercises ***
+
+SHOW TABLES;
+--List the 5 most expensive products from the "Planes" product line
+DESCRIBE products;
+
+SELECT *
+FROM products
+WHERE productLine = 'Planes'
+ORDER BY MSRP DESC
+LIMIT 5;
+
+-- Identify the products that are about to run out of stock (quantity in stock < 100)
+DESCRIBE products;
+
+SELECT productName, productLine, quantityInStock
+FROM products
+WHERE quantityInStock < 100
+ORDER BY quantityInStock ASC; -- muestro primero los mas prontos a agotarse
+
+--List 10 products in the "Motorcycles" category with the lowest buy price and more than 1000 units in stock
+
+DESCRIBE products;
+
+SELECT DISTINCT productLine
+FROM products; -- para ver als cateorias
+
+SELECT productName, productLine, MSRP,quantityInStock
+FROM products
+WHERE productLine = 'Motorcycles' AND quantityInStock >1000
+ORDER BY MSRP ASC
+LIMIT 10; -- los 10 mas baratos de esa cateroia
