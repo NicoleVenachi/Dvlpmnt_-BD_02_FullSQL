@@ -123,7 +123,7 @@ DESCRIBE orders;
 
 -- order details
 
--- DROP TABLE orderdetails;
+DROP TABLE orderdetails;
 CREATE TABLE IF NOT EXISTS orderdetails (
     orderNumber INT(11) NOT NULL,
     productCode varchar(15) NOT NULL,
@@ -137,3 +137,20 @@ CREATE TABLE IF NOT EXISTS orderdetails (
 ); -- PK compuesta de dos FK
 
 DESCRIBE orderdetails;
+
+-- payments
+
+CREATE TABLE IF NOT EXISTS `ClassicModels`.`Payments` (
+  `checkNumber` VARCHAR(50) NOT NULL,
+  `paymentDate` DATETIME NOT NULL,
+  `amount` DOUBLE NOT NULL,
+  `customerNumber` INT(11) NOT NULL,
+  PRIMARY KEY (`checkNumber`),
+  INDEX `fk_Payments_Customers_idx` (`customerNumber` ASC),
+  CONSTRAINT `fk_Payments_Customers`
+    FOREIGN KEY (`customerNumber`)
+    REFERENCES `ClassicModels`.`Customers` (`customerNumber`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
