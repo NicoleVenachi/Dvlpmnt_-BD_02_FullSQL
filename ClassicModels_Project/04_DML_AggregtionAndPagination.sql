@@ -141,3 +141,30 @@ SELECT SUM(quantityOrdered) AS soldQuantity, productCode
 FROM orderdetails
 GROUP BY productCode
 ORDER BY SUM(quantityOrdered) DESC;
+
+
+
+
+
+-- *** PAGINATION -> ORDER BY, LIMIT, and OFFSET ***
+
+-- Retrieve the customer number for 10 customers who made the highest total payment in 2004.
+
+DESCRIBE payments;
+
+SELECT SUM(amount) AS totalPayment, customerNumber
+FROM payments
+WHERE paymentDate < "2004"
+GROUP BY customerNumber
+ORDER BY totalPayment DESC
+LIMIT 10;
+
+-- Pagination -> To get the next 10 results, we can simply add an OFFSET with the number of rows to skip.
+
+SELECT SUM(amount) AS totalPayment, customerNumber
+FROM payments
+WHERE paymentDate < "2004"
+GROUP BY customerNumber
+ORDER BY totalPayment DESC
+LIMIT 10
+OFFSET 10; 
