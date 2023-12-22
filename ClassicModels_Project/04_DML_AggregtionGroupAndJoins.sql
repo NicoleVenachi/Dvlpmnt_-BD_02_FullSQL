@@ -53,6 +53,18 @@ WHERE curstomerNumber IN (
     WHERE paymentDate< "2004-10-28"; 
 );  -- bring detailed info of unque customers who have made a payment before the specified date
 
+-- *** GROUP BY and AS ***
+
+-- Find the total number of payments made each customer before October 28, 2004.
+
+DESCRIBE payments;
+
+SELECT  COUNT(*) AS numberOfPayments, customerNumber
+FROM payments
+WHERE paymentDate < "2004-10-28"
+GROUP BY customerNumber;
+
+
 
 -- *** AGGREGATION Excercises ***
 
@@ -84,7 +96,5 @@ WHERE country = 'USA' AND customerNumber IN (
     FROM payments 
     WHERE paymentDate>= "2003-04-01" AND paymentDate<= "2004-03-31"
 ); -- all info from these customers, living in USA
-
--- *** GROUP BY and AS ***
 
 
