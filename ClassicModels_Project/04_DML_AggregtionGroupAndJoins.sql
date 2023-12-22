@@ -54,6 +54,7 @@ WHERE curstomerNumber IN (
 );  -- bring detailed info of unque customers who have made a payment before the specified date
 
 -- *** GROUP BY and AS ***
+-- USE CASE, Grouping registers according to a feature, in summary columns
 
 -- Find the total number of payments made each customer before October 28, 2004.
 
@@ -64,6 +65,14 @@ FROM payments
 WHERE paymentDate < "2004-10-28"
 GROUP BY customerNumber;
 
+-- *** SUM *** 
+
+--Find the total amount paid by each customer payment before October 28, 2004.
+
+SELECT SUM(amount) AS totalPaymentsAmount, customerNumber
+FROM payments
+WHERE paymentDate < "2004-10-28"
+GROUP BY customerNumber;
 
 
 -- *** AGGREGATION Excercises ***
@@ -97,4 +106,5 @@ WHERE country = 'USA' AND customerNumber IN (
     WHERE paymentDate>= "2003-04-01" AND paymentDate<= "2004-03-31"
 ); -- all info from these customers, living in USA
 
+-- Determine the total number of units sold for each product
 
