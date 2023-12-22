@@ -74,6 +74,30 @@ FROM payments
 WHERE paymentDate < "2004-10-28"
 GROUP BY customerNumber;
 
+-- *** SUM and COUNT ***
+
+-- Find the total no. of payments and total payment amount for each customer for payments made before October 28, 2004.
+
+DESCRIBE payments;
+
+SELECT COUNT(*) AS numberOfPayments, SUM (amount) AS totalAmountPaid, customerNumber
+FROM payments
+WHERE paymentDate < "2004-10-28"
+GROUP BY customerNumber;
+;
+
+
+-- *** MIN, MAX and AVERAGE ***
+
+-- Modify the above query to also show the minimum, maximum and average payment value for each customer.
+
+SELECT COUNT(*) AS numberOfPayments, SUM (amount) AS totalAmountPaid, MIN(amount) AS minPaymentAmount, MAX(amount) AS maxPaymentAmount, AVG (amount) AS averagePaymentAmount, customerNumber
+FROM payments
+WHERE paymentDate < "2004-10-28"
+GROUP BY customerNumber
+ORDER BY  COUNT(*) DESC, SUM (amount) DESC;
+
+
 
 -- *** AGGREGATION Excercises ***
 
@@ -82,12 +106,14 @@ GROUP BY customerNumber;
 SELECT count(*)
 FROM employees;
 
+
 --What is the total of payments received?
 
 DESCRIBE payments;
 
 SELECT SUM(amount)
 FROM payments;
+
 
 --  Retrieve details of all the customers in the United States who have made payments between April 1st 2003 and March 31st 2004.
 
@@ -106,5 +132,12 @@ WHERE country = 'USA' AND customerNumber IN (
     WHERE paymentDate>= "2003-04-01" AND paymentDate<= "2004-03-31"
 ); -- all info from these customers, living in USA
 
+
 -- Determine the total number of units sold for each product
 
+DESCRIBE orderdetails;
+
+SELECT SUM(quantityOrdered) AS soldQuantity, productCode
+FROM orderdetails
+GROUP BY productCode
+ORDER BY SUM(quantityOrdered) DESC;
