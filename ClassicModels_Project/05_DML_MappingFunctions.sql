@@ -42,3 +42,11 @@ WHERE productLine = 'Motorcycles'
 ORDER BY MSRP DESC
 LIMIT 5;
 
+-- *** Arithmetic Operations ***
+-- Display the product code, product name, buy price, sale price and profit margin percentage ((MSRP - buyPrice)*100/buyPrice) for the 10 products with the highest profit margin. Round the profit margin to 2 decimals.
+DESCRIBE products;
+
+SELECT productCode, productName, ROUND((MSRP - buyPrice)*100/buyPrice, 2) AS marginPercentage, buyPrice, MSRP
+FROM products
+ORDER BY marginPercentage DESC
+LIMIT 10;
