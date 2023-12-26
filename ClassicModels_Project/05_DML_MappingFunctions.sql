@@ -65,6 +65,11 @@ GROUP BY customerNumber
 ORDER BY highestPayment DESC;
 
 -- *** MONTH ***
--- QUESTION: Show the total payments received month by month for every year.
+-- Show the total payments received month by month for every year.
 
 DESCRIBE payments;
+
+SELECT YEAR(paymentDate) AS paymentYear, MONTH(paymentDate) AS paymentMonth, COUNT(*) AS numberOfPayments, ROUND(SUM(amount)) AS totalPaymentAmount
+FROM payments
+GROUP BY paymentYear, paymentMonth
+ORDER BY paymentYear, paymentMonth;
