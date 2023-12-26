@@ -69,7 +69,17 @@ ORDER BY highestPayment DESC;
 
 DESCRIBE payments;
 
-SELECT YEAR(paymentDate) AS paymentYear, MONTH(paymentDate) AS paymentMonth, COUNT(*) AS numberOfPayments, ROUND(SUM(amount)) AS totalPaymentAmount
+SELECT YEAR(paymentDate) AS `year`, MONTH(paymentDate) AS `month`, COUNT(*) AS payments, ROUND(SUM(amount)) AS revenue
 FROM payments
-GROUP BY paymentYear, paymentMonth
-ORDER BY paymentYear, paymentMonth;
+GROUP BY `year`, `month`
+ORDER BY `year`, `month`;
+
+-- *** DATE_FORMAT and FORMAT  ***
+-- For the above query, format the amount properly with a dollar symbol and comma separation (e.g $26,267.62), and also show the month as a string.
+DESCRIBE payments;
+
+SELECT YEAR(paymentDate) AS `year`, DATE_FORMAT(paymentDate, '%b') AS `month`, COUNT(*) AS payments, CONCAT('$', FORMAT(SUM(amount), 2)) AS revenue
+FROM payments
+GROUP BY `year`, MONTH(paymentDate)
+ORDER BY `year`, MONTH(paymentDate);
+
