@@ -50,3 +50,21 @@ SELECT productCode, productName, ROUND((MSRP - buyPrice)*100/buyPrice, 2) AS mar
 FROM products
 ORDER BY marginPercentage DESC
 LIMIT 10;
+
+-- *** Mapping Functions -> Dates *** 
+
+-- *** YEAR ***
+-- List the largest single payment done by every customer in the year 2004, ordered by the transaction value (highest to lowest).
+
+DESCRIBE payments;
+
+SELECT COUNT(*) AS numberOfPayments, customerNumber, MAX(amount) AS highestPayment
+FROM PAYMENTS
+WHERE YEAR(paymentDate) > 2004
+GROUP BY customerNumber 
+ORDER BY highestPayment DESC;
+
+-- *** MONTH ***
+-- QUESTION: Show the total payments received month by month for every year.
+
+DESCRIBE payments;
