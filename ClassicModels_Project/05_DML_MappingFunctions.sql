@@ -1,6 +1,8 @@
-SHOW DATABASES;
 
+SHOW DATABASES;
 USE classicmodels;
+
+SHOW TABLES;
 
 -- *** Mapping Functions -> Strings *** 
 
@@ -24,3 +26,19 @@ FROM customers
 ORDER BY customerName ASC
 LIMIT 10
 OFFSET 0;
+
+
+
+
+-- *** Mapping Functions -> Numbers/Arithmetic operations *** 
+
+-- *** ROUND *** 
+-- Display the list of the 5 most expensive products in the "Motorcycles" product line with their price (MSRP) rounded to dollars.
+DESCRIBE products;
+
+SELECT ROUND(MSRP)
+FROM products
+WHERE productLine = 'Motorcycles'
+ORDER BY MSRP DESC
+LIMIT 5;
+
