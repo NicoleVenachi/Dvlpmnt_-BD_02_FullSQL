@@ -18,3 +18,19 @@ SELECT *
 FROM customers 
 ORDER BY contactLastName 
 LIMIT 10;
+
+
+--  *** Creating a VIEW ***
+
+-- creala
+CREATE VIEW usaCustomers 
+AS (
+    SELECT * 
+    FROM customers 
+    WHERE country='USA'
+);
+
+-- query de la view
+SELECT * 
+FROM usaCustomers 
+WHERE state="CA"; 
